@@ -22,3 +22,7 @@ To make it easier to access, this is a static website.
 - The time it takes to finish a turn, can then be used to calculate the length of a block of a bar.
 - The standard speed is 100, so the standard time to reach the next station is 10000 / 100 = 100 units.
 - On the center of each block of a bar, there should be a number representing the turn number.
+
+## Update 1:
+- A Special Action, named "Aglaia's spirit", can be added to Character 1. This action will increase the speed of the Character 1 by 30 after each turn. And it will cap at 180.
+- There is a little icon on the switch of Aglaia's spirit, when hang over it, a note will show, saying "Aglaia's spirit will increase the speed of the Character 1 by 30 after each turn. And it will cap at 180."
