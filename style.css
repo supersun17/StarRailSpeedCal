@@ -1,0 +1,250 @@
+:root {
+    --bg-dark: #0f1218;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a0a0;
+    --accent-glow: rgba(255, 255, 255, 0.03);
+
+    --char-1-color: #ff4757;
+    --char-2-color: #2e86de;
+    --char-3-color: #2ed573;
+    --char-4-color: #ffa502;
+    --gray-out: #3d3d3d;
+
+    --sidebar-width: 320px;
+    --header-height: 80px;
+
+    --av-scale: 5;
+    /* Pixels per Action Value unit */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+    /* App container handles scrolling */
+    height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-header {
+    height: var(--header-height);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 18, 24, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, #fff, #a0a0a0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.controls {
+    display: flex;
+    gap: 2rem;
+}
+
+.zoom-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.zoom-control label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+input[type="range"] {
+    accent-color: #fff;
+    cursor: pointer;
+}
+
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    border-right: 1px solid var(--border-color);
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.character-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.char-input-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.char-input-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.char-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.color-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.char-name-input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+.char-name-input:focus {
+    outline: none;
+}
+
+.speed-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.speed-input-wrapper label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.speed-input {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+.speed-input:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+.timeline-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column-reverse;
+    /* This flips the scroll container! */
+    align-items: center;
+    position: relative;
+    background:
+        radial-gradient(circle at 50% 50%, var(--accent-glow), transparent);
+}
+
+.timeline-grid {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    position: relative;
+    padding-bottom: 2rem;
+    /* Buffer from the bottom line */
+}
+
+/* Base line for the timeline */
+.timeline-grid::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -50px;
+    right: -50px;
+    height: 2px;
+    background: var(--border-color);
+}
+
+.timeline-column {
+    width: 60px;
+    display: flex;
+    flex-direction: column-reverse;
+    /* Stack blocks upwards */
+    gap: 4px;
+    position: relative;
+}
+
+.turn-block {
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.turn-block.grayed {
+    background: var(--gray-out) !important;
+    color: #555;
+    height: 100vh !important;
+    /* Visual indicator for 0 speed */
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.char-input-card {
+    animation: fadeInUp 0.4s ease forwards;
+}

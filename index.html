@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rail Speed Calculator</title>
+    <meta name="description" content="A premium visualizer for Honkai: Star Rail character speed tuning and turn order.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <h1>Star Rail Speed Calculator</h1>
+            <div class="controls">
+                <div class="zoom-control">
+                    <label for="zoomRange">Zoom</label>
+                    <input type="range" id="zoomRange" min="0.5" max="5" step="0.1" value="1">
+                </div>
+            </div>
+        </header>
+
+        <main class="content-wrapper">
+            <aside class="sidebar">
+                <section class="character-inputs" id="characterInputs">
+                    <!-- Character input blocks will be injected here -->
+                </section>
+            </aside>
+
+            <section class="timeline-container">
+                <div class="timeline-grid" id="timelineGrid">
+                    <div class="timeline-column" data-char-index="0" id="col-0"></div>
+                    <div class="timeline-column" data-char-index="1" id="col-1"></div>
+                    <div class="timeline-column" data-char-index="2" id="col-2"></div>
+                    <div class="timeline-column" data-char-index="3" id="col-3"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
